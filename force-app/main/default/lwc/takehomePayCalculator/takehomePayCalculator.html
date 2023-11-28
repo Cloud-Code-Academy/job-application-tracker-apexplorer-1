@@ -1,0 +1,160 @@
+<template>
+    <lightning-card  title="Take Home Pay Calculator">
+        <!-- Process -->
+        <lightning-button 
+            label="Calculate Take Home Pay" 
+            title="Calculate Take Home Pay" 
+            slot="actions" 
+            onclick={calculateTakeHomePay}
+        ></lightning-button>
+        <div class="slds-var-p-horizontal_small">
+            <!-- Input Information-->
+            <lightning-input 
+                type="number" 
+                name="salary" 
+                label="Salary"
+                value={salary}
+                onchange={handleChange}
+                required
+            ></lightning-input>
+            <lightning-select
+                name="filingStatus"
+                label="Filing Status"
+                value={filingStatus}
+                options={options}
+                onchange={handleChange}
+                required 
+            ></lightning-select>
+        </div>
+
+        <template if:true={displayCalculation}>
+            <div class="slds-var-p-horizontal_small">
+
+                <div class="slds-var-m-top_medium"></div>
+
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label 
+                                    for="taxableIncome" 
+                                    class="slds-form-element__label"
+                                >Taxable Income</label>
+                            </td>
+                            <td>
+                                <lightning-formatted-number 
+                                    name="taxableIncome" 
+                                    value={taxableIncome} 
+                                    format-style="currency" 
+                                    currency-code="USD"
+                                ></lightning-formatted-number>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th colspan="2">Withholdings</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label 
+                                    for="federalTax" 
+                                    class="slds-form-element__label"
+                                >Federal Taxes</label>
+                            </td>
+                            <td>
+                                <lightning-formatted-number 
+                                    name="federalTax" 
+                                    value={federalTax} 
+                                    format-style="currency" 
+                                    currency-code="USD"
+                                ></lightning-formatted-number>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label 
+                                    for="socialSecurityTax" 
+                                    class="slds-form-element__label"
+                                >Social Security Taxes</label>
+                            </td>
+                            <td>
+                                <lightning-formatted-number 
+                                    name="socialSecurityTax" 
+                                    value={socialSecurityTax} 
+                                    format-style="currency" 
+                                    currency-code="USD"
+                                ></lightning-formatted-number>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label 
+                                    for="medicareTax" 
+                                    class="slds-form-element__label"
+                                >Medicare Taxes</label>
+                            </td>
+                            <td>
+                                <lightning-formatted-number 
+                                    name="medicareTax" 
+                                    value={medicareTax} 
+                                    format-style="currency" 
+                                    currency-code="USD"
+                                ></lightning-formatted-number>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th colspan="2">Take Home Pay</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label 
+                                    for="takeHomePay" 
+                                    class="slds-form-element__label"
+                                >Per Year</label>
+                            </td>
+                            <td>
+                                <lightning-formatted-number 
+                                    name="takeHomePay" 
+                                    value={takeHomePay} 
+                                    format-style="currency" 
+                                    currency-code="USD"
+                                ></lightning-formatted-number>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label 
+                                    for="monthly" 
+                                    class="slds-form-element__label"
+                                >Per Month</label>
+                            </td>
+                            <td>
+                                <lightning-formatted-number 
+                                    name="monthly" 
+                                    value={monthly} 
+                                    format-style="currency" 
+                                    currency-code="USD"
+                                ></lightning-formatted-number>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label 
+                                    for="biWeekly" 
+                                    class="slds-form-element__label"
+                                >Bi-Weekly</label>
+                            </td>
+                            <td>
+                                <lightning-formatted-number 
+                                    name="biWeekly" 
+                                    value={biWeekly} 
+                                    format-style="currency" 
+                                    currency-code="USD"
+                                ></lightning-formatted-number>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </template>
+    </lightning-card>
+</template>
