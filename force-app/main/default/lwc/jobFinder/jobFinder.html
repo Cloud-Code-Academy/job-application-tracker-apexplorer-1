@@ -1,0 +1,69 @@
+<template>
+    <lightning-card  title="Job Finder">
+        <!-- Process -->
+        <lightning-button 
+            label="Find Jobs" 
+            title="Find Jobs" 
+            slot="actions" 
+            onclick={findJobs}
+        ></lightning-button>
+        <div class="slds-var-p-horizontal_small">
+            <!-- Input Information-->
+            <div class="slds-form-element">
+                <label class="slds-form-element__label" for="what">What</label>
+                <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
+                    <lightning-icon 
+                        size="x-small" 
+                        class="slds-icon slds-input__icon slds-input__icon_left slds-icon-text-default" 
+                        icon-name="utility:search"
+                    ></lightning-icon>
+                    <input 
+                        class="slds-input" 
+                        type="text" 
+                        id="what" 
+                        name="keywords" 
+                        value={keywords}
+                        onchange={handleChange}
+                        placeholder="Job title or keywords" 
+                    />
+                </div>
+                <label class="slds-form-element__label" for="where">Where</label>
+                <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
+                    <lightning-icon 
+                        size="x-small" 
+                        class="slds-icon slds-input__icon slds-input__icon_left slds-icon-text-default" 
+                        icon-name="utility:location"
+                    ></lightning-icon>
+                    <input 
+                        class="slds-input" 
+                        type="text" 
+                        id="where" 
+                        name="location" 
+                        value={location}
+                        onchange={handleChange}
+                        placeholder="City, state, zip code or &quot;remote&quot;"   
+                    />
+                </div>
+            </div>
+        </div>
+    </lightning-card>
+    <!-- Display Results--> 
+    <template if:true={jobs}>
+        <div class="slds-var-m-top_large"></div>
+        <lightning-card  title="Search Results">
+            <div class="slds-var-p-horizontal_small">
+                <lightning-datatable
+                    key-field="id"
+                    data={jobs}
+                    columns={columns}>
+                </lightning-datatable>
+            </div>
+             <lightning-button 
+                label="Create Job Applications" 
+                title="Create Job Applications" 
+                slot="actions" 
+                onclick={createJobApplications}
+            ></lightning-button>
+        </lightning-card>
+    </template>
+</template>
